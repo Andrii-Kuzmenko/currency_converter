@@ -1,0 +1,16 @@
+@import './styles/variables.scss';
+
+.title {
+  padding-top: 50px;
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: 700;
+  text-align: center;
+  color: $title-color;
+}
+
+.text {
+  margin-bottom: 41px;
+  text-align: center;
+  color: $text-color;
+}
