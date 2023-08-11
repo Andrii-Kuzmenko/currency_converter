@@ -1,5 +1,17 @@
 @import './styles/variables.scss';
 
+
+.app {
+  position: absolute;
+  z-index: -1;
+  top: -55%;
+  left: -40%;
+  width: 751px;
+  height: 751px;
+  border-radius: 751px;
+  background: radial-gradient(50% 50.00% at 50% 50.00%, #EAEAFE 0%, rgba(221, 246, 243, 0.00) 100%);
+}
+
 .title {
   padding-top: 50px;
   margin-bottom: 10px;
