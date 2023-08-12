@@ -14,6 +14,6 @@ export const InputGroup: React.FC<Props> = ({ currency, onSelect, className }) =
       <FlagImage className={styles.flagImage} currency={currency} />
       <Dropdown selectedValue={currency} onSelect={onSelect} />
     </div>
-    <input className={styles.input} type="number" />
+    <input className={styles.input} type="number" inputMode="numeric" />
   </div>
 );
