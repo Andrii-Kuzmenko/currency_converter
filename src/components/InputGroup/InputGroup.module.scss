@@ -1,0 +1,30 @@
+@import "../../styles/variables.scss";
+// @import "../../styles/mixins.scss";
+
+.flagImage {
+  width: 45px;
+  height: 45px;
+  margin-right: 13px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 141px;
+  height: 45px;
+  padding: 11px 14px;
+  flex-shrink: 0;
+  border-radius: 7px;
+  background: $input-background-color;
+  border-width: 0;
+  outline: none;
+  text-align: right;
+
+  color: $input-text-color;
+  text-align: right;
+  font-size: 20px;
+  font-weight: 600;
+}

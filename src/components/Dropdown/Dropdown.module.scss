@@ -1,0 +1,20 @@
+@import '../../styles/variables.scss';
+
+.dropdown {
+  position: relative;
+}
+
+.controlsContainer {
+  display: flex;
+  align-items: center;
+}
+
+.dropdownMenu {
+  position: absolute;
+}
+
+.currencyName {
+  font-size: 20px;
+  font-weight: 500;
+  color: $blue-color;
+}
