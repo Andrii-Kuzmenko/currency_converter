@@ -35,6 +35,7 @@ export const App: React.FC = () => {
   const getCurrencyFromServer = useCallback(async () => {
     try {
       const data = await getCurrency(currencyName, convertedCurrencyName);
+
       const index: number = data?.rates?.[convertedCurrencyName] || 1;
 
       setRateIndex(index);
