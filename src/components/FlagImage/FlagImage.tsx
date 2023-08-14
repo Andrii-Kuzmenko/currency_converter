@@ -1,3 +1,4 @@
+import React from "react";
 import BGN from "../../images/bulgaria.png";
 import CNY from "../../images/china.png";
 import CZK from "../../images/czech-republic.png";
@@ -25,8 +26,8 @@ const flagImages: FlagImages = {
   USD,
 };
 
-export const FlagImage: React.FC<Props> = ({ currency, ...props }) => {
+export const FlagImage = React.memo<Props>(({ currency, ...props }) => {
   const image: string = flagImages[currency];
 
   return <img src={image} alt={currency} {...props} />;
-};
+});

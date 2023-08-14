@@ -1,10 +1,10 @@
-import { FC } from "react";
+import React from "react";
 
 type Props = {
   className?: string;
 }
 
-export const ArrowIcon: FC<Props> = ({ className }) => (
+export const ArrowIcon = React.memo<Props>(({ className }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -20,4 +20,4 @@ export const ArrowIcon: FC<Props> = ({ className }) => (
       />
     </g>
   </svg>
-);
+));

@@ -10,7 +10,7 @@ type Props = {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
-export const InputGroup: React.FC<Props> = ({
+export const InputGroup = React.memo<Props>(({
   currency,
   className,
   value,
@@ -31,4 +31,4 @@ export const InputGroup: React.FC<Props> = ({
       min="0"
     />
   </div>
-);
+));

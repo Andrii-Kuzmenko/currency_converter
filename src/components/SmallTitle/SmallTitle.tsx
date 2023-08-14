@@ -7,8 +7,8 @@ type Props = {
   className?: string;
 }
 
-export const SmallTitle: React.FC<Props> = ({ children, className }) => (
+export const SmallTitle = React.memo<Props>(({ children, className }) => (
   <h1 className={classNames([styles.title], className)}>
     {children}
   </h1>
-);
+));

@@ -1,10 +1,10 @@
-import { FC } from "react";
+import React from "react";
 
 type Props = {
   className?: string;
 }
 
-export const SwapIcon: FC<Props> = ({ className }) => (
+export const SwapIcon = React.memo<Props>(({ className }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -22,4 +22,4 @@ export const SwapIcon: FC<Props> = ({ className }) => (
       fill="white"
     />
   </svg>
-);
+));

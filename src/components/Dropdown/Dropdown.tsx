@@ -10,7 +10,7 @@ type Props = {
   onSelect: (option: string) => void;
 }
 
-export const Dropdown: React.FC<Props> = ({ selectedValue, onSelect }) => {
+export const Dropdown = React.memo<Props>(({ selectedValue, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
 
@@ -45,4 +45,4 @@ export const Dropdown: React.FC<Props> = ({ selectedValue, onSelect }) => {
       )}
     </div>
   )
-};
+});
