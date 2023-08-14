@@ -65,7 +65,7 @@ A simple example of configuration:
 // dataConfig.ts
 export const config = {
   defaultCurrencyName: 'USD',
-  defaultConvertedCurrencyName: 'en',
+  defaultConvertedCurrencyName: 'GBP',
 };
 ```
 
