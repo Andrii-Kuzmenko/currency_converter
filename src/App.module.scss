@@ -1,4 +1,5 @@
 @import './styles/variables.scss';
+@import './styles/mixins.scss';
 
 .app {
   position: absolute;
@@ -72,6 +73,8 @@
   height: 44px;
   background-color: $blue-color;
   border-radius: 50%;
+
+  @include hover(transform, scale(1.1));
 }
 
 .line {

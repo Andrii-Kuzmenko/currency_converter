@@ -6,7 +6,7 @@ import { SwapIcon } from "./components/icons/SwapIcon";
 import styles from "./App.module.scss";
 import './styles/global.scss'
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   const [rateIndex, setRateIndex] = useState<number>(1);
   const [currencyName, setCurrencyName] = useState<string>(defaultCurrencyName);
   const [convertedCurrencyName, setConvertedCurrencyName] = useState<string>(defaultConvertedCurrencyName);
@@ -113,5 +113,3 @@ const App: React.FC = () => {
     </>
   )
 }
-
-export default App

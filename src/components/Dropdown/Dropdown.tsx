@@ -21,7 +21,7 @@ export const Dropdown: React.FC<Props> = ({ selectedValue, onSelect }) => {
     <div className={styles.dropdown}>
       <div className={styles.controlsContainer}>
         <p className={styles.currencyName}>{selectedValue}</p>
-        <Button onClick={() => setIsOpen(!isOpen)}>
+        <Button className={styles.button} onClick={() => setIsOpen(!isOpen)}>
           <ArrowIcon />
         </Button>
       </div>

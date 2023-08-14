@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 
 .dropdown {
   position: relative;
@@ -31,4 +32,8 @@
   list-style-type: none;
 
   cursor: pointer;
+}
+
+.button {
+  @include hover(transform, scale(1.2));
 }
