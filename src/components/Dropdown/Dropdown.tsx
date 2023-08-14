@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import { useOnClickOutside } from 'usehooks-ts';
 import { currencyOptions } from '../../dataConfig';
 import { Button } from '..';
 import { ArrowIcon } from '../icons/ArrowIcon';
@@ -11,14 +12,21 @@ type Props = {
 
 export const Dropdown: React.FC<Props> = ({ selectedValue, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef(null);
 
   const handleSelect = (option: string) => {
     onSelect(option);
     setIsOpen(false);
   };
 
+  const handleClickOutside = () => {
+    setIsOpen(false);
+  };
+
+  useOnClickOutside(ref, handleClickOutside);
+
   return (
-    <div className={styles.dropdown}>
+    <div className={styles.dropdown} ref={ref}>
       <div className={styles.controlsContainer}>
         <p className={styles.currencyName}>{selectedValue}</p>
         <Button className={styles.button} onClick={() => setIsOpen(!isOpen)}>
