@@ -49,7 +49,8 @@ Response:
   "rates": {
     "USD": 1.2734
   }
-}```
+}
+```
 
 To make requests to the Frankfurter API, you need to construct the appropriate URLs using the base URL https://api.frankfurter.app. For more details on available endpoints and query parameters, refer to the official Frankfurter API documentation.
 
