@@ -6,4 +6,7 @@ export const currencyOptions = [
   'PLN',
   'GBP',
   'USD',
-]
+];
+
+export const defaultCurrencyName = 'PLN';
+export const defaultConvertedCurrencyName = 'USD';

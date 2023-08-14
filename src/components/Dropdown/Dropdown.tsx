@@ -20,13 +20,12 @@ export const Dropdown: React.FC<Props> = ({ selectedValue, onSelect }) => {
   return (
     <div className={styles.dropdown}>
       <div className={styles.controlsContainer}>
-
         <p className={styles.currencyName}>{selectedValue}</p>
         <Button onClick={() => setIsOpen(!isOpen)}>
           <ArrowIcon />
         </Button>
-
       </div>
+
       {isOpen && (
         <ul className={styles.dropdownMenu}>
           {currencyOptions.map((option) => (
