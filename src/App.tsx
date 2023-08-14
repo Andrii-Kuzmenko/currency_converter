@@ -1,35 +1,99 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useCallback, useEffect, useState } from "react";
+import { defaultConvertedCurrencyName, defaultCurrencyName } from "./dataConfig";
+import { Button, Container, InputGroup, SmallTitle } from "./components";
+import { getCurrency } from "./api/dataCurrency";
+import { SwapIcon } from "./components/icons/SwapIcon";
+import styles from "./App.module.scss";
+import './styles/global.scss'
 
-function App() {
-  const [count, setCount] = useState(0)
+export const App: React.FC = () => {
+  const [rateIndex, setRateIndex] = useState<number>(1);
+  const [currencyName, setCurrencyName] = useState<string>(defaultCurrencyName);
+  const [convertedCurrencyName, setConvertedCurrencyName] = useState<string>(defaultConvertedCurrencyName);
+  const [currencyValue, setCurrencyValue] = useState<string>('');
+  const [convertedCurrencyValue, setConvertedCurrencyValue] = useState<string>('');
+  const [isSwapped, setIsSwapped] = useState<boolean>(false);
+
+  const handleCurrencyValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value;
+
+    setCurrencyValue(newValue);
+    setConvertedCurrencyValue(newValue !== '' ? (parseFloat(newValue) * rateIndex).toFixed(2) : '');
+  };
+
+  const handleConvertedCurrencyValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value;
+
+    setConvertedCurrencyValue(newValue);
+    setCurrencyValue(newValue !== '' ? (parseFloat(newValue) / rateIndex).toFixed(2) : '');
+  };
+
+  const handleSwap = () => {
+    setIsSwapped(current => !current);
+  }
+
+  const getCurrencyFromServer = useCallback(async () => {
+    try {
+      const data = await getCurrency(currencyName, convertedCurrencyName);
+      const index: number = data?.rates?.[convertedCurrencyName] || 1;
+
+      setRateIndex(index);
+      setCurrencyValue('');
+      setConvertedCurrencyValue('');
+    } catch {
+      setRateIndex(1);
+    }
+  }, [currencyName, convertedCurrencyName]);
+
+  useEffect(() => {
+    getCurrencyFromServer();
+  }, [getCurrencyFromServer]);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+      <div className={styles.app}></div>
+      <Container>
+        <h2 className={styles.title}>Currency Converter</h2>
+        <p className={styles.text}>
+          Check live rates, set rate alerts, receive
+          <br />
+          notifications and more.
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        <div className={styles.currencyContainer}>
+          <SmallTitle className={styles.smallTitle}>Amount</SmallTitle>
+          <InputGroup
+            className={styles.currencyInputGroup}
+            currency={isSwapped ? currencyName : convertedCurrencyName}
+            onSelect={isSwapped ? setCurrencyName : setConvertedCurrencyName}
+            value={isSwapped ? currencyValue : convertedCurrencyValue}
+            handleChange={isSwapped ? handleCurrencyValueChange : handleConvertedCurrencyValueChange}
+          />
+
+          <div className={styles.swapButtonGroup}>
+            <Button className={styles.button} onClick={handleSwap}>
+              <SwapIcon className={styles.swapIcon} />
+            </Button>
+            <div className={styles.line}></div>
+          </div>
+
+          <SmallTitle className={styles.smallTitle}>Converted Amount</SmallTitle>
+          <InputGroup
+            className={styles.currencyInputGroupLast}
+            currency={!isSwapped ? currencyName : convertedCurrencyName}
+            onSelect={!isSwapped ? setCurrencyName : setConvertedCurrencyName}
+            value={!isSwapped ? currencyValue : convertedCurrencyValue}
+            handleChange={!isSwapped ? handleCurrencyValueChange : handleConvertedCurrencyValueChange}
+          />
+        </div>
+        <SmallTitle className={styles.exchangeRateTitle}>Indicative Exchange Rate</SmallTitle>
+
+        <p className={styles.exchangeRate}>
+          {!isSwapped
+            ? `1 ${convertedCurrencyName} = ${(1 / rateIndex).toFixed(4)} ${currencyName}`
+            : `1 ${currencyName} = ${rateIndex.toFixed(4)} ${convertedCurrencyName}`
+          }
+        </p>
+      </Container>
     </>
   )
 }
-
-export default App

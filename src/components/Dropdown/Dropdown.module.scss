@@ -1,0 +1,39 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.dropdown {
+  position: relative;
+}
+
+.controlsContainer {
+  display: flex;
+  align-items: center;
+}
+
+.dropdownMenu {
+  position: absolute;
+  left: -5px;
+  z-index: 1;
+  padding: 5px;
+  background: linear-gradient(to bottom, white, $input-background-color);
+  border-bottom: 1px solid $input-background-color;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.currencyName {
+  font-size: 20px;
+  font-weight: 500;
+  color: $blue-color;
+}
+
+.options {
+  @extend .currencyName;
+  list-style-type: none;
+
+  cursor: pointer;
+}
+
+.button {
+  @include hover(transform, scale(1.2));
+}

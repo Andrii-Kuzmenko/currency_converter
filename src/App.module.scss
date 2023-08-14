@@ -1,0 +1,100 @@
+@import './styles/variables.scss';
+@import './styles/mixins.scss';
+
+.app {
+  position: absolute;
+  z-index: -1;
+  top: -385px;
+  left: -325px;
+  width: 751px;
+  height: 751px;
+  border-radius: 751px;
+  background: radial-gradient(50% 50.00% at 50% 50.00%, #EAEAFE 0%, rgba(221, 246, 243, 0.00) 100%);
+}
+
+.title {
+  padding-top: 50px;
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: 700;
+  text-align: center;
+  color: $title-color;
+}
+
+.text {
+  margin-bottom: 41px;
+  text-align: center;
+  color: $text-color;
+}
+
+.currencyContainer {
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  background: $white-color;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+}
+
+.smallTitle {
+  margin-bottom: 14px;
+}
+
+.currencyInputGroup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.currencyInputGroupLast {
+  @extend .currencyInputGroup;
+  margin-bottom: 0;
+}
+
+.swapButtonGroup {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.swapIcon {
+  width: 14.5px;
+  height: 20px;
+}
+
+.button {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background-color: $blue-color;
+  border-radius: 50%;
+
+  @include hover(transform, scale(1.1));
+}
+
+.line {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 1px;
+  width: 100%;
+  background-color: $button-line-color;
+}
+
+.exchangeRateTitle {
+  margin-bottom: 13px;
+  color: $rate-title-color;
+  font-size: 16px;
+}
+
+.exchangeRate {
+  margin-bottom: 50px;
+  color: $black-color;
+  font-size: 18px;
+  font-weight: 500;
+}

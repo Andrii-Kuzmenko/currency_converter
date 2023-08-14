@@ -1,0 +1,9 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.container {
+  max-width: 768px;
+  min-width: 320px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
