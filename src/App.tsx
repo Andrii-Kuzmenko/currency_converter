@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { defaultConvertedCurrencyName, defaultCurrencyName } from "./dataConfig";
+import { config } from './dataConfig';
+
 import { Button, Container, InputGroup, SmallTitle } from "./components";
 import { getCurrency } from "./api/dataCurrency";
 import { SwapIcon } from "./components/icons/SwapIcon";
@@ -8,8 +9,11 @@ import './styles/global.scss'
 
 export const App: React.FC = () => {
   const [rateIndex, setRateIndex] = useState<number>(1);
-  const [currencyName, setCurrencyName] = useState<string>(defaultCurrencyName);
-  const [convertedCurrencyName, setConvertedCurrencyName] = useState<string>(defaultConvertedCurrencyName);
+  const [currencyName, setCurrencyName] = useState<string>(config.defaultCurrencyName);
+  const [
+    convertedCurrencyName,
+    setConvertedCurrencyName
+  ] = useState<string>(config.defaultConvertedCurrencyName);
   const [currencyValue, setCurrencyValue] = useState<string>('');
   const [convertedCurrencyValue, setConvertedCurrencyValue] = useState<string>('');
   const [isSwapped, setIsSwapped] = useState<boolean>(false);
@@ -18,14 +22,14 @@ export const App: React.FC = () => {
     const newValue = event.target.value;
 
     setCurrencyValue(newValue);
-    setConvertedCurrencyValue(newValue !== '' ? (parseFloat(newValue) * rateIndex).toFixed(2) : '');
+    setConvertedCurrencyValue((parseFloat(newValue) * rateIndex).toFixed(2));
   };
 
   const handleConvertedCurrencyValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
 
     setConvertedCurrencyValue(newValue);
-    setCurrencyValue(newValue !== '' ? (parseFloat(newValue) / rateIndex).toFixed(2) : '');
+    setCurrencyValue((parseFloat(newValue) / rateIndex).toFixed(2));
   };
 
   const handleSwap = () => {
