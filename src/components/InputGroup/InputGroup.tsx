@@ -1,16 +1,22 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { Dropdown, FlagImage } from "..";
 import styles from "./InputGroup.module.scss";
+import { Dropdown, FlagImage } from "..";
 
 type Props = {
   currency: string,
-  onSelect: Dispatch<SetStateAction<string>>,
   className: string,
   value: string,
+  onSelect: Dispatch<SetStateAction<string>>,
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
-export const InputGroup: React.FC<Props> = ({ currency, onSelect, className, value, handleChange }) => (
+export const InputGroup: React.FC<Props> = ({
+  currency,
+  className,
+  value,
+  onSelect,
+  handleChange
+}) => (
   <div className={className}>
     <div className={styles.container}>
       <FlagImage className={styles.flagImage} currency={currency} />
@@ -22,6 +28,7 @@ export const InputGroup: React.FC<Props> = ({ currency, onSelect, className, val
       value={value}
       onChange={handleChange}
       placeholder="0.00"
+      min="0"
     />
   </div>
 );
