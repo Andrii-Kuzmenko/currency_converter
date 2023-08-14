@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Container.module.scss";
 
-interface Props {
+type Props = {
   children: React.ReactNode | string,
 }
 

@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
-import styles from "./InputGroup.module.scss";
 import { Dropdown, FlagImage } from "..";
+import styles from "./InputGroup.module.scss";
 
 type Props = {
   currency: string,

@@ -12,7 +12,7 @@ export const App: React.FC = () => {
   const [convertedCurrencyName, setConvertedCurrencyName] = useState<string>(defaultConvertedCurrencyName);
   const [currencyValue, setCurrencyValue] = useState<string>('');
   const [convertedCurrencyValue, setConvertedCurrencyValue] = useState<string>('');
-  const [isSwaped, setIsSwaped] = useState<boolean>(false);
+  const [isSwapped, setIsSwapped] = useState<boolean>(false);
 
   const handleCurrencyValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
@@ -29,7 +29,7 @@ export const App: React.FC = () => {
   };
 
   const handleSwap = () => {
-    setIsSwaped(current => !current);
+    setIsSwapped(current => !current);
   }
 
   const getCurrencyFromServer = useCallback(async () => {
@@ -61,21 +61,13 @@ export const App: React.FC = () => {
         </p>
         <div className={styles.currencyContainer}>
           <SmallTitle className={styles.smallTitle}>Amount</SmallTitle>
-          {isSwaped
-            ? <InputGroup
-              className={styles.currencyInputGroup}
-              currency={currencyName}
-              onSelect={setCurrencyName}
-              value={currencyValue}
-              handleChange={handleCurrencyValueChange}
-            />
-            : <InputGroup
-              className={styles.currencyInputGroup}
-              currency={convertedCurrencyName}
-              onSelect={setConvertedCurrencyName}
-              value={convertedCurrencyValue}
-              handleChange={handleConvertedCurrencyValueChange}
-            />}
+          <InputGroup
+            className={styles.currencyInputGroup}
+            currency={isSwapped ? currencyName : convertedCurrencyName}
+            onSelect={isSwapped ? setCurrencyName : setConvertedCurrencyName}
+            value={isSwapped ? currencyValue : convertedCurrencyValue}
+            handleChange={isSwapped ? handleCurrencyValueChange : handleConvertedCurrencyValueChange}
+          />
 
           <div className={styles.swapButtonGroup}>
             <Button className={styles.button} onClick={handleSwap}>
@@ -85,26 +77,18 @@ export const App: React.FC = () => {
           </div>
 
           <SmallTitle className={styles.smallTitle}>Converted Amount</SmallTitle>
-          {!isSwaped
-            ? <InputGroup
-              className={styles.currencyInputGroupLast}
-              currency={currencyName}
-              onSelect={setCurrencyName}
-              value={currencyValue}
-              handleChange={handleCurrencyValueChange}
-            />
-            : <InputGroup
-              className={styles.currencyInputGroupLast}
-              currency={convertedCurrencyName}
-              onSelect={setConvertedCurrencyName}
-              value={convertedCurrencyValue}
-              handleChange={handleConvertedCurrencyValueChange}
-            />}
+          <InputGroup
+            className={styles.currencyInputGroupLast}
+            currency={!isSwapped ? currencyName : convertedCurrencyName}
+            onSelect={!isSwapped ? setCurrencyName : setConvertedCurrencyName}
+            value={!isSwapped ? currencyValue : convertedCurrencyValue}
+            handleChange={!isSwapped ? handleCurrencyValueChange : handleConvertedCurrencyValueChange}
+          />
         </div>
         <SmallTitle className={styles.exchangeRateTitle}>Indicative Exchange Rate</SmallTitle>
 
         <p className={styles.exchangeRate}>
-          {!isSwaped
+          {!isSwapped
             ? `1 ${convertedCurrencyName} = ${(1 / rateIndex).toFixed(4)} ${currencyName}`
             : `1 ${currencyName} = ${rateIndex.toFixed(4)} ${convertedCurrencyName}`
           }
