@@ -29,7 +29,7 @@ Conversion Result: Instantly view the converted amount in the target currency. T
 
 In the project directory, you can run:
 
-### `npm i`   http://localhost:3000
+### `npm i`
 ### `npm run dev`
 
 ## Using the API:
