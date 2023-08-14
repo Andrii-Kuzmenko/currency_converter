@@ -42,7 +42,8 @@ http example
 ```GET /latest?amount=1&from=GBP&to=USD```
 
 Response:
-```{
+```
+{
   "amount": 1,
   "base": "GBP",
   "date": "2023-05-10",
@@ -60,21 +61,25 @@ You can configure certain default parameters for the application by modifying th
 
 A simple example of configuration:
 
-```// dataConfig.ts
+```
+// dataConfig.ts
 export const config = {
   defaultCurrencyName: 'USD',
   defaultConvertedCurrencyName: 'en',
-};```
+};
+```
 
 Once the configuration is set, you can use these default values throughout the application, for example:
 
-```import config from './dataConfig';
+```
+import config from './dataConfig';
 
 const defaultCurrencyName = config.defaultCurrencyName;
 const defaultConvertedCurrencyName = config.defaultConvertedCurrencyName;
 
 console.log(`Default currency: ${defaultCurrencyName}`);
-console.log(`Default converted currency: ${defaultConvertedCurrencyName}`);```
+console.log(`Default converted currency: ${defaultConvertedCurrencyName}`);
+```
 
 This allows for easy modification of application parameters without the need to edit code in multiple places.
 
